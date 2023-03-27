@@ -49,7 +49,7 @@ public class Book implements Serializable{
     {
         this.manufactureName = manufactureName;
     }
-    public =int getPrice()
+    public int getPrice()
     {
         return price;
     }

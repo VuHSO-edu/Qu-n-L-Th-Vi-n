@@ -15,7 +15,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
+    /**
+     *
+     */
     static List<Book> bookList;
+    public Main() {
+    }
+    /**
+     * 
+     */
+    
+    public static List<Book> getBookList() {
+        return bookList;
+    }
+    public static void setBookList(List<Book> bookList) {
+        Main.bookList = bookList;
+    }
     static Scanner scan;
     private static boolean add;
     public static void main(String[] args) {
@@ -85,6 +100,9 @@ public class Main {
             bookList.add(inputBook);
         }
     }
+    /**
+     * 
+     */
     private static void display()
     {
         System.out.println("+++Hien thi thong tin sach+++");
@@ -94,16 +112,15 @@ public class Main {
         }
 
     }
+    /**
+     * 
+     */
     private static void  sortByAuthorName()
     {
-        Collections.sort(bookList,new Compaator<Book>() {
-           
-            public int compare(Book o1,Book o2)
-            {
-                return o1.getAuthorName().compareToIgnoreCase(o2.getAuthorName());
-
-            }
-        });
+        Collections.sort(bookList,(o1, o2) -> extracted(o1, o2));
+    }
+    private static int extracted(Book o1, Book o2) {
+        return o1.getAuthorName().compareToIgnoreCase(o2.getAuthorName());
     }
     /**
      * 
@@ -196,8 +213,8 @@ public class Main {
             fis = new FileInputStream("Data.obj");
             ois = new ObjectInputStream(fis);
 
-            List<Book> DataList = (List<Book>) ois.readObject();
-            for(Book book: DataList)
+            final List<Book> dataList =(List<Book>) ois.readObject();
+            for(Book book : dataList)
             {
                 bookList.add(book);
             }
